@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channel Promoter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #1a2530);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .logo i {
+            font-size: 2.8rem;
+            color: #ff4e50;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff4e50, #f9d423);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Key Section Styles */
+        .key-section {
+            background: linear-gradient(135deg, #FFD700, #DAA520);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            text-align: center;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .key-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            transform: rotate(30deg);
+        }
+        
+        .key-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+        }
+        
+        .channel-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .channel-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 25px;
+            border: 4px solid #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            flex-shrink: 0;
+        }
+        
+        .channel-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .channel-info {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .channel-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .channel-info p {
+            color: #666;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .subs {
+            color: #ff4e50;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .subscribe-btn {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(255, 78, 80, 0.3);
+            text-decoration: none;
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 78, 80, 0.4);
+        }
+        
+        /* Premium Section Styles */
+        .premium-section {
+            background: linear-gradient(135deg, #e6e6e6, #c0c0c0);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            position: relative;
+        }
+        
+        .premium-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .channel-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .channel-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .channel-banner {
+            height: 140px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .channel-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .channel-item:hover .channel-banner img {
+            transform: scale(1.05);
+        }
+        
+        .channel-content {
+            padding: 20px;
+        }
+        
+        .premium-badge {
+            background: linear-gradient(to right, #c0c0c0, #a0a0a0);
+            color: #333;
+            font-size: 0.85rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .channel-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .channel-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Pricing Section Styles */
+        .pricing {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .pricing h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .pricing > p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #2c3e50, #4a6580);
+            border-radius: 12px;
+            padding: 30px;
+            width: 280px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #f9d423;
+        }
+        
+        .price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .price span {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .pricing-card ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-card ul li i {
+            color: #f9d423;
+        }
+        
+        .buy-btn {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            margin: 8px 0;
+        }
+        
+        /* Payment Modal Styles */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .payment-modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+        
+        .payment-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .payment-close:hover {
+            color: #ff4e50;
+        }
+        
+        .payment-modal-content h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        #selected-package {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff4e50;
+        }
+        
+        .payment-test-mode {
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .payment-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .payment-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .payment-form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .payment-form-group input:focus {
+            border-color: #ff4e50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 78, 80, 0.2);
+        }
+        
+        .payment-card-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .payment-card-icons i {
+            font-size: 24px;
+            color: #aaa;
+        }
+        
+        .payment-btn {
+            background: linear-gradient(to right, #ff4e50, #f9d423);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .payment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 78, 80, 0.4);
+        }
+        
+        .payment-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .payment-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .payment-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .payment-processing {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .channels-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .channel-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .channel-img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .channel-info {
+                text-align: center;
+            }
+            
+            .pricing-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fab fa-youtube"></i>
+            <h1>TubePromote</h1>
+        </div>
+        <p>Discover and promote amazing YouTube channels</p>
+    </header>
+    
+    <div class="container">
+        <div class="key-section">
+            <h2><i class="fas fa-crown"></i> Featured Creator</h2>
+            <div class="channel-card">
+                <div class="channel-img">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Channel Image">
+                </div>
+                <div class="channel-info">
+                    <h3>UPSKILL DIGITAL</h3>
+                    <p>Latest tech reviews, tutorials, and gadget unboxings</p>
+                    <div class="subs"><i class="fas fa-users"></i> 245K subscribers</div>
+                    <a href="https://youtube.com/@skill-z2o?sub_confirmation=1" target="_blank">
+                        <button class="subscribe-btn">
+                            <i class="fab fa-youtube"></i> Subscribe to My Channel
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="premium-section">
+            <h2><i class="fas fa-star"></i> Premium Channels</h2>
+            <div class="channels-grid">
+                <div class="channel-item">
+                    <div class="channel-banner">
+                        <img src="https://images.unsplash.com/photo-1626808642875-0aa545483df9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Channel Banner">
+                    </div>
+                    <div class="channel-content">
+                        <span class="premium-badge">PREMIUM</span>
+                        <h3>Travel Diaries</h3>
+                        <p>Explore the world with our travel adventures</p>
+                        <div class="subs"><i class="fas fa-users"></i> 189K subscribers</div>
+                        <button class="subscribe-btn"><i class="fab fa-youtube"></i> Subscribe</button>
+                    </div>
+                </div>
+                
+                <div class="channel-item">
+                    <div class="channel-banner">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Channel Banner">
+                    </div>
+                    <div class="channel-content">
+                        <span class="premium-badge">PREMIUM</span>
+                        <h3>Fitness Journey</h3>
+                        <p>Workout routines and nutrition tips</p>
+                        <div class="subs"><i class="fas fa-users"></i> 156K subscribers</div>
+                        <button class="subscribe-btn"><i class="fab fa-youtube"></i> Subscribe</button>
+                    </div>
+                </div>
+                
+                <div class="channel-item">
+                    <div class="channel-banner">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Channel Banner">
+                    </div>
+                    <div class="channel-content">
+                        <span class="premium-badge">PREMIUM</span>
+                        <h3>Cooking Master</h3>
+                        <p>Delicious recipes from around the world</p>
+                        <div class="subs"><i class="fas fa-users"></i> 302K subscribers</div>
+                        <button class="subscribe-btn"><i class="fab fa-youtube"></i> Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pricing">
+            <h2>Get Premium Placement</h2>
+            <p>Boost your channel's visibility with our premium packages</p>
+            
+            <div class="pricing-options">
+                <div class="pricing-card">
+                    <h3>Silver Package</h3>
+                    <div class="price">$49<span>/mo</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Premium listing</li>
+                        <li><i class="fas fa-check"></i> Silver background</li>
+                        <li><i class="fas fa-check"></i> Featured in premium section</li>
+                        <li><i class="fas fa-check"></i> Basic analytics</li>
+                    </ul>
+                    <button class="buy-btn" data-package="silver" data-amount="4900">Get Started</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Gold Package</h3>
+                    <div class="price">$99<span>/mo</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Top featured placement</li>
+                        <li><i class="fas fa-check"></i> Golden background</li>
+                        <li><i class="fas fa-check"></i> Priority in search results</li>
+                        <li><i class="fas fa-check"></i> Advanced analytics</li>
+                        <li><i class="fas fa-check"></i> Promoted on our social media</li>
+                    </ul>
+                    <button class="buy-btn" data-package="gold" data-amount="9900">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="payment-modal">
+        <div class="payment-modal-content">
+            <span class="payment-close">&times;</span>
+            <h2>Purchase Premium Package</h2>
+            <p id="selected-package">Silver Package - $49/month</p>
+            
+            
+            
+            <form id="payment-form">
+                <div class="payment-form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="payment-form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                    <div class="payment-card-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px;">
+                    <div class="payment-form-group" style="flex: 1;">
+                        <label for="card-expiry">Expiry Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                    </div>
+                    
+                    <div class="payment-form-group" style="flex: 1;">
+                        <label for="card-cvc">CVC</label>
+                        <input type="text" id="card-cvc" placeholder="123" required>
+                    </div>
+                </div>
+                
+                <div id="card-errors" class="payment-error" style="display: none;"></div>
+                
+                <button type="submit" class="payment-btn">Pay Now</button>
+            </form>
+            
+            <div id="payment-status" class="payment-status"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 TubePromote. All rights reserved.</p>
+        <p>This is a demo website for promoting YouTube channels</p>
+    </footer>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secure Stripe Payment</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #card-element { margin: 10px 0; }
+    #payment-status { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>Subscribe to Premium</h2>
+  <p>Price: $10/month</p>
+  <form id="payment-form">
+    <input type="email" id="email" placeholder="Email" required /><br />
+    <div id="card-element"></div>
+    <button type="submit">Pay</button>
+  </form>
+  <div id="payment-status"></div>
+
+  
+  <script>
+    const stripe = Stripe('pk_test_YourPublishableKeyHere');
+    const elements = stripe.elements();
+    const card = elements.create('card');
+    card.mount('#card-element');
+
+    const form = document.getElementById('payment-form');
+    const status = document.getElementById('payment-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Processing...';
+
+      const res = await fetch('/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: 10 })
+      });
+      const { clientSecret } = await res.json();
+
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: { email: document.getElementById('email').value }
+        }
+      });
+
+      if (error) {
+        status.textContent = `Error: ${error.message}`;
+      } else if (paymentIntent.status === 'succeeded') {
+        status.textContent = 'Payment successful!';
+      }
+    });
+  </script>
+
+</body>
+</html>
